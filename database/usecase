@@ -1,0 +1,34 @@
+---
+title: Cas d'Utilisation Générale pour la Gestion des Employés
+---
+usecaseDiagram
+    actor Employé as "Employé"
+    actor Responsable as "Responsable"
+    actor Administrateur as "Administrateur"
+
+    rectangle "Système de Gestion des Employés" {
+        usecase "Authentification" as UC1
+        usecase "Soumettre une demande de congé" as UC2
+        usecase "Modifier une demande de congé" as UC3
+        usecase "Annuler une demande de congé" as UC4
+        usecase "Approuver ou rejeter une demande de congé" as UC5
+        usecase "Consulter le solde de congés" as UC6
+        usecase "Gérer les employés" as UC7
+        usecase "Générer des rapports" as UC8
+        usecase "Recevoir des notifications" as UC9
+    }
+
+    Employé --> UC1
+    Employé --> UC2
+    Employé --> UC3
+    Employé --> UC4
+    Employé --> UC6
+    Employé --> UC9
+
+    Responsable --> UC5
+    Responsable --> UC6
+    Responsable --> UC9
+
+    Administrateur --> UC7
+    Administrateur --> UC8
+    Administrateur --> UC5

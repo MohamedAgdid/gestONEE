@@ -1,0 +1,59 @@
+ <!DOCTYPE html>
+            <html>
+            <head>
+                <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var props = {
+                            outputType: jsPDFInvoiceTemplate.OutputType.Save,
+                            returnJsPDFDocObject: true,
+                            fileName: 'Congee_Recu',
+                            orientationLandscape: true,
+                            compress: true,
+                            logo: {
+                                src: '../../img/oneelog.png',
+                                type: 'PNG',
+                                width: 19.66,
+                                height: 19.66,
+                                margin: {
+                                    top: 0,
+                                    left: 0
+                                }
+                            },
+                            business: {
+                                name: 'ONEE ERRACHIDIA',
+                                address: 'ONEE_BO_ BP 519 ERRACHIDIA',
+                                phone: '+212 654385224',
+                                email: 'Onee-errachidia@onee.com',
+                            },
+                            
+                            employee: {
+                                name: '<?php echo addslashes($Employee_Name); ?>',
+                                service: '<?php echo addslashes($Service_Name); ?>',
+                                employeeID: '<?php echo addslashes($Employee_ID); ?>'
+                            },
+                            invoice: {
+                                label: 'Congée pour',
+                                num: '  ID: <?php echo addslashes($ID); ?>',
+                                invDate: 'Date debut :<?php echo addslashes($Datedebut); ?>    Date fin :<?php echo addslashes($Datefin); ?>',
+                                headerBorder: false,
+                                tableBodyBorder: false,
+                               
+                                invDescLabel: 'Employee nome : <?php echo addslashes($Employee_Name); ?>',
+                                invDesc: 'Service name: <?php echo addslashes($Service_Name); ?>  ID :<?php echo addslashes($Employee_ID); ?>',
+                            },
+                            pageEnable: true,
+                            pageLabel: 'Page ',
+                            format: 'a5'
+                        };
+        
+                        var pdfObject = jsPDFInvoiceTemplate.default(props);
+                        console.log('PDF created: ', pdfObject);
+                        
+                    });
+                </script>
+            </head>
+            <body>
+                <p>pdf telecharger</p>
+            </body>
+            </html>

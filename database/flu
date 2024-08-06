@@ -1,0 +1,49 @@
+flowchart TD
+    %% Début
+    Début([Début]) --> Gestion_Admin
+    Début --> Gestion_Responsable
+    Début --> Actions_Employé
+    Début --> Système_Courrier
+
+    %% Gestion Admin
+    subgraph Gestion_Admin[Gestion des Administrateurs]
+        direction TB
+        A1[Ajouter Responsable] --> A2[Mettre à jour Responsable]
+        A2 --> A3[Supprimer Responsable]
+        A3 --> A4[Ajouter Employé]
+        A4 --> A5[Mettre à jour Employé]
+        A5 --> A6[Supprimer Employé]
+        A6 --> A7[Ajouter Service]
+        A7 --> A8[Mettre à jour Service]
+        A8 --> A9[Supprimer Service]
+        A9 --> A10[Accorder/Retirer Accès]
+        A10 --> Fin
+    end
+
+    %% Gestion Responsable
+    subgraph Gestion_Responsable[Gestion des Responsables]
+        direction TB
+        B1[Attribuer Mission] --> B2[Mettre à jour Mission]
+        B2 --> B3[Suivi Mission]
+        B3 --> B4[Compléter Mission]
+        B4 --> B5[Traiter Demande de Congés]
+        B5 --> Fin
+    end
+
+    %% Actions Employé
+    subgraph Actions_Employé[Actions des Employés]
+        direction TB
+        C1[Demander Congé] --> C4[Envoyer Courrier]
+        C4 --> C5[Recevoir Courrier]
+        C5 --> C6[Demander Mission]
+        C6 --> C7[Réaliser Rapport de Mission]
+        C7 --> Fin
+    end
+
+    %% Système Courrier
+    subgraph Système_Courrier[Système de Courrier]
+        direction TB
+        D1[Envoyer Message de Courrier] --> D2[Recevoir Message de Courrier]
+        D2 --> D3[Mettre à jour Statut de Courrier]
+        D3 --> Fin
+    end

@@ -1,0 +1,109 @@
+classDiagram
+    direction LR
+    class Service {
+        +id: INT
+        +name: VARCHAR
+    }
+
+    class Admin {
+        +id: INT
+        +name: VARCHAR
+        +password: VARCHAR
+        +picture: VARCHAR
+        +email: VARCHAR
+        +address: VARCHAR
+        +acces: ENUM
+        +idservice: INT
+    }
+
+    class Responsable {
+        +id: INT
+        +name: VARCHAR
+        +picture: VARCHAR
+        +email: VARCHAR
+        +gender: ENUM
+        +address: TEXT
+        +typeservice: VARCHAR
+        +password: VARCHAR
+        +idb: INT
+        +type: VARCHAR
+        +note: TEXT
+        +acces: ENUM
+        +idservice: INT
+    }
+
+    class Employee {
+        +id: INT
+        +name: VARCHAR
+        +email: VARCHAR
+        +gender: ENUM
+        +picture: VARCHAR
+        +address: TEXT
+        +typeservice: VARCHAR
+        +password: VARCHAR
+        +idb: INT
+        +type: VARCHAR
+        +idM: INT
+        +note: TEXT
+        +acces: ENUM
+        +idservice: INT
+    }
+
+    class Missions {
+        +id: INT
+        +name: VARCHAR
+        +date: DATE
+        +address: VARCHAR
+        +description: TEXT
+        +raport: TEXT
+        +status: ENUM
+        +nbr_vehicule: INT
+        +matricules: VARCHAR
+        +show: ENUM
+        +idr: INT
+        +ide: INT
+    }
+
+    class Conges {
+        +id: INT
+        +datedebut: DATE
+        +datefin: DATE
+        +demande: ENUM
+        +statut: ENUM
+        +motif: TEXT
+        +effectue: ENUM
+        +nbr_rest: INT
+        +days_select: INT
+        +idr: INT
+        +ide: INT
+    }
+
+    class Courier {
+        +id: INT
+        +message: TEXT
+        +date: DATETIME
+        +seen: TINYINT
+        +reply: TEXT
+        +idsender: INT
+        +idDistinateur: INT
+    }
+
+    class Vehicule {
+        +id: INT
+        +matricule: VARCHAR
+        +Disponibilite: ENUM
+        +idService: INT
+    }
+
+    Service "1" -- "N" Admin : gère
+    Service "1" -- "N" Responsable : gère
+    Service "1" -- "N" Employee : associé à
+    Service "1" -- "N" Vehicule : affecte
+    Responsable "1" -- "N" Missions : affecte
+    Employee "N" -- "N" Missions : assigné à
+    Responsable "1" -- "N" Conges : traite
+    Employee "N" -- "N" Conges : demande
+    Responsable "1" -- "N" Courier : envoie
+    Employee "1" -- "N" Courier : envoie
+    Courier "N" -- "1" Responsable : reçoit
+    Courier "N" -- "1" Employee : reçoit

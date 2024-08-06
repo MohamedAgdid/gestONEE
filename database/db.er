@@ -1,0 +1,116 @@
+erDiagram
+    SERVICE {
+        INT id PK
+        VARCHAR name
+        +removeService(id: INT) : void
+        +updateService(id: INT, name: VARCHAR) : void
+        +getService(id: INT) : Service
+    }
+    
+    ADMIN {
+        INT id PK
+        VARCHAR name
+        VARCHAR password
+        VARCHAR picture
+        VARCHAR email
+        VARCHAR type
+        INT idservice FK
+        VARCHAR address
+        ENUM acces
+    }
+    
+    RESPONSABLE {
+        INT id PK
+        VARCHAR name
+        VARCHAR picture
+        VARCHAR email
+        ENUM gender
+        TEXT address
+        VARCHAR typeservice
+        VARCHAR password
+        INT idb
+        INT idservice FK
+        VARCHAR type
+        TEXT note
+        ENUM acces
+    }
+    
+    EMPLOYEE {
+        INT id PK
+        VARCHAR name
+        VARCHAR email
+        ENUM gender
+        VARCHAR picture
+        TEXT address
+        VARCHAR typeservice
+        VARCHAR password
+        INT idb
+        INT idservice FK
+        VARCHAR type
+        INT idM
+        TEXT note
+        ENUM acces
+    }
+    
+    MISSIONS {
+        INT id PK
+        VARCHAR name
+        DATE date
+        VARCHAR address
+        TEXT description
+        INT idr FK
+        INT ide FK
+        TEXT raport
+        ENUM status
+        INT nbr_vehicule
+        VARCHAR matricules
+        ENUM show
+    }
+    
+    CONGEES {
+        INT id PK
+        DATE datedebut
+        DATE datefin
+        INT idr FK
+        INT ide FK
+        ENUM demande
+        ENUM statut
+        TEXT motif
+        ENUM effectue
+        INT nbr_rest
+        INT days_select
+    }
+    
+    COURIER {
+        INT id PK
+        INT idsender
+        INT idDistinateur
+        TEXT message
+        DATETIME date
+        TINYINT seen
+        TEXT reply
+    }
+    
+    VEHICULE {
+        INT id PK
+        VARCHAR matricule
+        INT idService FK
+        ENUM Disponibilite
+    }
+    
+    SERVICE ||--o| ADMIN : "gère"
+    SERVICE ||--o| RESPONSABLE : "gère"
+    SERVICE ||--o{ EMPLOYEE : "associé à"
+    SERVICE ||--o{ VEHICULE : "affecte"
+    RESPONSABLE ||--o{ MISSIONS : "affecte"
+    EMPLOYEE ||--o| MISSIONS : "assigné à"
+    RESPONSABLE ||--o{ CONGEES : "traite"
+    EMPLOYEE ||--o{ CONGEES : "demande"
+    
+    RESPONSABLE ||--o{ COURIER : "envoie"
+    EMPLOYEE ||--o{ COURIER : "envoie"
+
+    COURIER ||--o{ RESPONSABLE : "reçoit"
+    COURIER ||--o{ EMPLOYEE : "reçoit"
+
+

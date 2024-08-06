@@ -1,0 +1,67 @@
+@startuml
+left to right direction
+
+actor "Admin" as Admin
+actor "Responsable" as Responsable
+actor "Employé" as Employe
+
+rectangle "Système" {
+    usecase "Authentification" as Auth
+    usecase "Gérer Services" as GererServices
+    usecase "Gérer Utilisateurs" as GererUtilisateurs
+    Gérer Responsable
+    usecase "Créer/Modifier/Supprimer Responsable" as CreerModifierSupprimerResponsable 
+    usecase "Créer/Modifier/Supprimer Employé" as CreerModifierSupprimerEmploye
+    usecase "Assigner Missions" as AssignerMissions
+    usecase "Créer/Modifier Mission" as CreerModifierMission
+    usecase "Voir/Soumettre Rapport" as VoirSoumettreRapport
+    usecase "Gérer Congés" as GererConges
+    usecase "Approuver/Rejeter Congés" as ApprouverRejeterConges
+    usecase "Demander Congés" as DemanderConges
+    usecase "Communiquer via Courier" as CommuniquerCourier
+    usecase "Envoyer Message" as EnvoyerMessage
+    usecase "Recevoir Message" as RecevoirMessage
+    usecase "Gérer Véhicules" as GererVehicules
+    usecase "Assigner Véhicule à Mission" as AssignerVehiculeMission
+
+    Auth -[#black]-> GererServices : <<include>>
+    Auth -[#black]-> GererUtilisateurs : <<include>>
+    Auth -[#black]-> CreerModifierSupprimerResponsable : <<include>>
+    Auth -[#black]-> CreerModifierSupprimerEmploye : <<include>>
+    Auth -[#black]-> AssignerMissions : <<include>>
+    Auth -[#black]-> CreerModifierMission : <<include>>
+    Auth -[#black]-> VoirSoumettreRapport : <<include>>
+    Auth -[#black]-> GererConges : <<include>>
+    Auth -[#black]-> ApprouverRejeterConges : <<include>>
+    Auth -[#black]-> DemanderConges : <<include>>
+    Auth -[#black]-> CommuniquerCourier : <<include>>
+    Auth -[#black]-> EnvoyerMessage : <<include>>
+    Auth -[#black]-> RecevoirMessage : <<include>>
+    Auth -[#black]-> GererVehicules : <<include>>
+    Auth -[#black]-> AssignerVehiculeMission : <<include>>
+}
+
+Admin --> GererServices
+Admin --> GererUtilisateurs
+Admin --> CreerModifierSupprimerResponsable
+Admin --> CreerModifierSupprimerEmploye
+
+Responsable --> GererUtilisateurs
+Responsable --> AssignerMissions
+Responsable --> CreerModifierMission
+Responsable --> VoirSoumettreRapport
+Responsable --> GererConges
+Responsable --> ApprouverRejeterConges
+Responsable --> CommuniquerCourier
+Responsable --> EnvoyerMessage
+Responsable --> RecevoirMessage
+Responsable --> GererVehicules
+Responsable --> AssignerVehiculeMission
+
+Employe --> DemanderConges
+Employe --> VoirSoumettreRapport
+Employe --> CommuniquerCourier
+Employe --> EnvoyerMessage
+Employe --> RecevoirMessage
+@enduml
+
